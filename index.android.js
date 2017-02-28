@@ -6,63 +6,35 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    ListView,
 } from 'react-native';
 
-class Greeting extends Component {
-  render(){
-    return(
-      <Text>Hello {this.props.name}</Text>
-    );
-  }
-}
-
 export default class HelloReactNative extends Component {
-  render() {
-    return (
-      <View style={{flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-start'}}>
-        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}}/>
-        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}}/>
-        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}}/>
-      </View>
-    );
-  }
+
+    constructor(prope) {
+        super(prope);
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            dataSource: ds.cloneWithRows([
+                'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
+            ])
+        };
+    }
+
+    render() {
+        return (
+            <View>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) => <Text>{rowData}</Text>}
+                />
+            </View>
+        );
+    }
 }
-
-const pic = {
-   bananas: {
-     uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-   },
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  bananas: {
-    width: 193,
-    height: 130,
-  },
-});
 
 AppRegistry.registerComponent('HelloReactNative', () => HelloReactNative);
