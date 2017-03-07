@@ -15,11 +15,12 @@ import {
 
 
 import MyListView from './view/listview';
+import MyNavigator from './view/navigator'
 
 export default class HelloReactNative extends Component {
     render() {
         return (
-            <MyListView/>
+            <MyNavigator/>
         );
     }
 }
