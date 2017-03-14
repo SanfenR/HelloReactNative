@@ -10,11 +10,9 @@ import {
     StyleSheet,
     Text,
     View,
-    ListView,
 } from 'react-native';
 
 
-import MyListView from './view/listview';
 import MyNavigator from './view/navigator'
 
 export default class HelloReactNative extends Component {
